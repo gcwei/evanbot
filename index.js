@@ -25,7 +25,7 @@ app.post("/webhook", function (req, res) {
       entry.messaging.forEach(function(event) {
         console.log("entry.messaging ");
         //if (event.postback) {
-          console.log("im in event.postback");
+          //console.log("im in event.postback");
           processPostback(event);
         //}
       });
@@ -37,9 +37,9 @@ app.post("/webhook", function (req, res) {
 
 function processPostback(event) {
   var senderId = event.sender.id;
-  var payload = event.postback.payload;
+  //var payload = event.postback.payload;
 
-  console.log("im in processPostback and payload is " + payload);
+  console.log("im in processPostback "); // and payload is " + payload);
   //if (payload === "Greeting") {
     // Get user's first name from the User Profile API
     // and include it in the greeting
