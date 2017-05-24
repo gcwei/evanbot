@@ -38,7 +38,7 @@ function processPostback(event) {
   var payload = event.postback.payload;
 
   console.log("im in processPostback and payload is " + payload);
-  if (payload === "Greeting") {
+  //if (payload === "Greeting") {
     // Get user's first name from the User Profile API
     // and include it in the greeting
     request({
@@ -61,7 +61,7 @@ function processPostback(event) {
       var message = greeting + " YOYO YO";
       sendMessage(senderId, {text: message});
     });
-  }
+  //}
 }
 
 // sends message to user
