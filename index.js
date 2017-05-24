@@ -14,16 +14,16 @@ app.get("/", function (req, res) {
 
 // All callbacks for Messenger will be POST-ed here
 app.post("/webhook", function (req, res) {
-  console.log("im in webhook with req.body.object = " + req.body.object);
+  //console.log("im in webhook with req.body.object = " + req.body.object);
   // Make sure this is a page subscription
   if (req.body.object == "page") {
     // Iterate over each entry
     // There may be multiple entries if batched
     req.body.entry.forEach(function(entry) {
-      console.log("req.body.entry ");
+      //console.log("req.body.entry ");
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) {
-        console.log("entry.messaging ");
+        //console.log("entry.messaging ");
         if (event.message && event.message.text) {
               processPostback(event);
         }
@@ -38,7 +38,7 @@ function processPostback(event) {
   var senderId = event.sender.id;
   var message = event.message.text;
 
-  console.log("im in processPostback "); // and payload is " + payload);
+  //console.log("im in processPostback "); // and payload is " + payload);
   //if (payload === "Greeting") {
     // Get user's first name from the User Profile API
     // and include it in the greeting
@@ -54,7 +54,7 @@ function processPostback(event) {
       if (error) {
         console.log("Error getting user's name: " +  error);
       } else {
-        console.log("im in Hi Name");
+        //console.log("im in Hi Name");
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
         greeting = "Hi " + name + ". ";
