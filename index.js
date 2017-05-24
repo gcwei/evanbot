@@ -16,12 +16,14 @@ app.get("/", function (req, res) {
 app.post("/webhook", function (req, res) {
   console.log("im in webhook with req.body.object = " + req.body.object);
   // Make sure this is a page subscription
-  //if (req.body.object == "page") {
+  if (req.body.object == "page") {
     // Iterate over each entry
     // There may be multiple entries if batched
     req.body.entry.forEach(function(entry) {
+      console.log("req.body.entry ");
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) {
+        console.log("entry.messaging ");
         if (event.postback) {
           console.log("im in event.postback");
           processPostback(event);
@@ -30,7 +32,7 @@ app.post("/webhook", function (req, res) {
     });
 
     res.sendStatus(200);
-  //}
+  }
 });
 
 function processPostback(event) {
