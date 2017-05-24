@@ -24,10 +24,10 @@ app.post("/webhook", function (req, res) {
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) {
         console.log("entry.messaging ");
-        //if (event.postback) {
-          //console.log("im in event.postback");
+        if (event.postback) {
+          console.log("im in event.postback");
           processPostback(event);
-        //}
+        }
       });
     });
 
