@@ -22,6 +22,7 @@ app.post("/webhook", function (req, res) {
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) {
         if (event.postback) {
+          console.log("im in event.postback");
           processPostback(event);
         }
       });
@@ -35,6 +36,7 @@ function processPostback(event) {
   var senderId = event.sender.id;
   var payload = event.postback.payload;
 
+  console.log("im in processPostback and payload is " + payload);
   if (payload === "Greeting") {
     // Get user's first name from the User Profile API
     // and include it in the greeting
@@ -50,11 +52,12 @@ function processPostback(event) {
       if (error) {
         console.log("Error getting user's name: " +  error);
       } else {
+        console.log("im in Hi Name");
         var bodyObj = JSON.parse(body);
         name = bodyObj.first_name;
         greeting = "Hi " + name + ". ";
       }
-      var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
+      var message = greeting + " YOYO YO";
       sendMessage(senderId, {text: message});
     });
   }
@@ -62,6 +65,7 @@ function processPostback(event) {
 
 // sends message to user
 function sendMessage(recipientId, message) {
+  console.log("im in sendMessage");
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
     qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
