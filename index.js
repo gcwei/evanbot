@@ -24,9 +24,8 @@ app.post("/webhook", function (req, res) {
       // Iterate over each messaging event
       entry.messaging.forEach(function(event) {
         console.log("entry.messaging ");
-        if (event.postback) {
-          console.log("im in event.postback");
-          processPostback(event);
+        if (event.message && event.message.text) {
+                    processMessage(event);
         }
       });
     });
@@ -37,7 +36,7 @@ app.post("/webhook", function (req, res) {
 
 function processPostback(event) {
   var senderId = event.sender.id;
-  var payload = event.postback.payload;
+  var message = event.message.text;
 
   console.log("im in processPostback "); // and payload is " + payload);
   //if (payload === "Greeting") {
@@ -60,7 +59,7 @@ function processPostback(event) {
         name = bodyObj.first_name;
         greeting = "Hi " + name + ". ";
       }
-      var message = greeting + " YOYO YO";
+      var message = greeting + " How can i help you?";
       sendMessage(senderId, {text: message});
     });
   //}
