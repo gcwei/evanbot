@@ -37,7 +37,7 @@ app.post("/webhook", function (req, res) {
 
 function processPostback(event) {
   var senderId = event.sender.id;
-  //var payload = event.postback.payload;
+  var payload = event.postback.payload;
 
   console.log("im in processPostback "); // and payload is " + payload);
   //if (payload === "Greeting") {
