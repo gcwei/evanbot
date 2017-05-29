@@ -16,7 +16,8 @@
   "author": "GCW",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^4.10.2"
+    "mongoose": "^4.10.2",
+    "node-wit": "^4.2.0"
   },
   "scripts": {
 	"start": "node index.js"
